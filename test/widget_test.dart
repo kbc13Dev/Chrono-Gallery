@@ -7,24 +7,32 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:chrono_gallery/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('App Tests', () {
+    testWidgets('App se renderiza correctamente', (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+      
+      // Verifica que la app se renderiza
+      expect(find.byType(MaterialApp), findsOneWidget);
+      expect(find.text('Tiempo juntos'), findsOneWidget);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    testWidgets('App tiene tema oscuro configurado', (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+      
+      final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
+      expect(materialApp.theme?.brightness, equals(Brightness.dark));
+      expect(materialApp.theme?.useMaterial3, isTrue);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    testWidgets('App tiene localización en español', (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+      
+      final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
+      expect(materialApp.locale, equals(const Locale('es')));
+      expect(materialApp.supportedLocales, contains(const Locale('es')));
+    });
   });
 }

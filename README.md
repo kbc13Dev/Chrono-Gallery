@@ -167,17 +167,6 @@ Los ficheros JSON se guardan en el **directorio de documentos** de la app (vía 
 
 ---
 
-## 🛣️ Roadmap sugerido
-
-- [ ] Soporte de búsqueda y ordenación en Cartas/Mensajes.
-- [ ] Previsualización de imágenes a pantalla completa con *swipe* (la base del visor ya está esbozada).
-- [ ] Exportación/backup de JSON (Cartas, Mensajes, Galería).
-- [ ] Compartir cartas/mensajes como imagen o texto.
-- [ ] Eliminación/edición en lote en Galería.
-- [ ] Internacionalización completa de cadenas (todas las acciones y labels).
-
----
-
 ## 🧪 Pruebas rápidas
 
 - **Home**: Establece una fecha, cierra y vuelve a abrir la app → los anillos deben reflejar el tiempo transcurrido.
