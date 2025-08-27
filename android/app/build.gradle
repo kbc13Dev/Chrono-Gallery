@@ -1,0 +1,46 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"      // ⬅️ antes era "kotlin-android"
+    // El plugin de Flutter debe ir después
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.chrono_gallery"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    defaultConfig {
+        applicationId = "com.example.chrono_gallery"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    // ⬅️ Sube el nivel de Java (adiós warnings de Java 8)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    // ⬅️ Kotlin a JVM 17 (si prefieres toolchain, abajo hay otra opción)
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+// (Opcional recomendado si ya subiste Kotlin a 2.1.x en settings.gradle)
+kotlin {
+    jvmToolchain(17)
+}
+
+flutter {
+    source = "../.."
+}
